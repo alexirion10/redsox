@@ -11,7 +11,7 @@ namespace redsox
     [ApiVersion("1.0")]
     [ApiController]
     [AllowAnonymous]
-    [Route("[controller/v{version:apiVersion}")]
+    [Route("[controller]/v{version:apiVersion}")]
     public class TestController : Controller
     {
         private static readonly string[] s_summaries = new[]
@@ -19,9 +19,9 @@ namespace redsox
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        [HttpGet]
+        [HttpGet("weather-forecast")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IEnumerable<WeatherForecast> Get()
+        public IEnumerable<WeatherForecast> weatherForecast()
         {
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
@@ -33,18 +33,10 @@ namespace redsox
             .ToArray();
         }
 
-        [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public WeatherForecast Get(int index)
-        {
-            return new WeatherForecast
-            {
-                Date = DateTime.Now,
-                TemperatureC = new Random().Next(0, 100),
-                Summary = s_summaries[index]
-            };
-        }
-
+        /// <summary>
+        /// says Hello to the caller!
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("hello-world")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public string helloWorld()
@@ -77,7 +69,7 @@ namespace redsox
         [ApiVersion("2.0")]
         [ApiController]
         [AllowAnonymous]
-        [Route("[controller/v{version:apiVersion}")]
+        [Route("[controller]/v{version:apiVersion}")]
         public class TestController : Controller
         {
             [HttpGet("hello-world")]

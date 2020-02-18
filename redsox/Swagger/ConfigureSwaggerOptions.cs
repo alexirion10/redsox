@@ -27,7 +27,7 @@ namespace redsox
                 options.SwaggerDoc(description.GroupName, createInfoForApiVersion(description));
             }
 
-            // Set the comment path for the Swagger JSON and UI
+            // Add in XML comments from each MVC route
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             options.IncludeXmlComments(xmlPath);

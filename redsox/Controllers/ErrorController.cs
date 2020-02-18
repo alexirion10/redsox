@@ -8,7 +8,7 @@ namespace redsox.Controllers
 {
     [ApiVersion("1.0")]
     [ApiController]
-    [Route("[controller/v{version:apiVersion}")]
+    [Route("[controller]/v{version:apiVersion}")]
     public class ErrorController : Controller
     {
         [HttpGet]
